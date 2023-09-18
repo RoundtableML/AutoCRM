@@ -1,6 +1,7 @@
 import imapclient
 import pyzmail
 
+
 # Initially followed this https://replit.com/talk/learn/How-to-Make-a-Python-Email-Bot/8194
 
 def getMails(username, password, folderName):
@@ -21,6 +22,7 @@ def getMails(username, password, folderName):
             sender = list(msg.get_address('from'))
             recipient = list(msg.get_address('to'))
             body = msg.text_part.get_payload().decode(msg.text_part.charset)
+            # cleans up white space and formatting
             body = " ".join(body.split()).replace(">", "").replace("&#39;", "'").replace("&rsquo;", "'")
 
             mail = {

@@ -21,7 +21,7 @@ def main():
 
 
 
-
+# https://docs.google.com/document/d/1n7TDQAV_fVOOjWpiIDpD4YlDbNzhRJOdXciePi6P6RU/edit
 
     # # Step 2 - TODO - Programmatically call AI to analyze mails and return JSON
     #
