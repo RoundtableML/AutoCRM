@@ -1,7 +1,8 @@
 import openai
+from config import OPENAI_API
 
 # Initialize OpenAI API
-openai.api_key = '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'
+openai.api_key = ''
 
 def analyze_email(mail):
     # Construct the prompt for the OpenAI model
