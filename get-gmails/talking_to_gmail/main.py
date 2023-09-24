@@ -1,45 +1,18 @@
-import secrets
-import llmJSONs
-
+# Existing imports
 import getMails
-import fun_with_gspread
+from email_analysis import analyze_email  # If using a separate module
 
-# import fun_with_sheets # Decided to use gspread instead of sheets api
-
-
-
-
-
-
-
-# Main has 3 steps
 def main():
-    #Step 1 - Get mails from gmail
+    # Step 1: Get mails from Gmail
     mails = getMails.getMails(secrets.username, secrets.password, "Jobs")
+
+    # Step 2: Analyze each email using OpenAI
     for mail in mails:
-        print("got mail!", (mail["body"][:10]))
+        company, position, status = analyze_email(mail)
+        print(f"Company: {company}, Position: {position}, Status: {status}")
+    
+    # Step 3: Add to Google Sheets (if required)
+    # ...
 
-
-
-# https://docs.google.com/document/d/1n7TDQAV_fVOOjWpiIDpD4YlDbNzhRJOdXciePi6P6RU/edit
-
-    # # Step 2 - TODO - Programmatically call AI to analyze mails and return JSON
-    #
-    #
-    # # Step 3 - Take the AI-generated JSON, add it to google sheets using gspread
-    # next_open_row = 0
-    #
-    # rows = []
-    # for res in llmJSONs.responses:
-    #     if res['isRelatedToJob']:
-    #         row = []
-    #         row.append(res['companyName'])
-    #         row.append(res['applicationStatus'])
-    #         row.append(res['roleName'])
-    #         rows.append(row)
-    # fun_with_gspread.add_rows('test sheet 2', rows)
-
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
