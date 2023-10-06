@@ -1,8 +1,8 @@
 import openai
-from config import OPENAI_API
+import config
 
 # Initialize OpenAI API
-openai.api_key = ''
+openai.api_key = config.OPENAI_API
 
 def analyze_email(mail):
     # Construct the prompt for the OpenAI model
@@ -10,9 +10,8 @@ def analyze_email(mail):
 
     # Make the API call
     response = openai.Completion.create(
-      engine="davinci",
-      prompt=prompt,
-      max_tokens=150
+      engine="gpt-3.5-turbo-16k",
+      prompt=prompt
     )
 
     # Parse the response to extract the desired information
@@ -25,9 +24,11 @@ def analyze_email(mail):
     position = data.get("Position", None)
     status = data.get("Status", None)
 
+    for mail in mails:
+      company, position, status = analyze_email(mail)
+      print(f"Company: {company}, Position: {position}, Status: {status}")
+
     return company, position, status
 
 # Iterate over mails list and analyze each mail
-for mail in mails:
-    company, position, status = analyze_email(mail)
-    print(f"Company: {company}, Position: {position}, Status: {status}")
+

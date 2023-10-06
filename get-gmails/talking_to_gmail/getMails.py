@@ -9,10 +9,10 @@ def getMails(username, password, folderName):
 
     # Username is email address
     # Password is an 'application specific' password (https://support.google.com/mail/answer/185833?hl=en)
-    
+    print(username,password)
     server.login(username, password)
 
-    server.select_folder('Jobs')
+    server.select_folder('AutoCRM_Test', readonly=True) #mark emails not read
     mail_ids = server.search() # Will mark emails as read.
     rawmsgs = server.fetch(mail_ids, ['BODY[]'])
     mails = []
@@ -40,9 +40,9 @@ def getMails(username, password, folderName):
             }
 
             mails.append(mail)
-            print("$$$$$$$$$$$$$$$$$$$$$$$$$")
-            print("Subject: ", subject, "From: ", sender[1], "To: ", recipient[1])
-            print("id", id)
-            print(body)
-            print("$$$$$$$$$$$$$$$$$$$$$$$$$")
+            # print("$$$$$$$$$$$$$$$$$$$$$$$$$")
+            # print("Subject: ", subject, "From: ", sender[1], "To: ", recipient[1])
+            # print("id", id)
+            # print(body)
+            # print("$$$$$$$$$$$$$$$$$$$$$$$$$")
     return mails
