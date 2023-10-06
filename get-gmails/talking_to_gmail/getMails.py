@@ -9,6 +9,7 @@ def getMails(username, password, folderName):
 
     # Username is email address
     # Password is an 'application specific' password (https://support.google.com/mail/answer/185833?hl=en)
+    
     server.login(username, password)
 
     server.select_folder('Jobs')
