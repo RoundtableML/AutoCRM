@@ -1,0 +1,7 @@
+config.py
+secrets.py
+
+get-gmails/talking_to_gmail/secrets.py
+get-gmails/authorized_user.json
+get-gmails/credentials.json
+get-gmails/talking_to_gmail/token.json
